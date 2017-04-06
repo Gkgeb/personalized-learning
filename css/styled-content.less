@@ -278,6 +278,47 @@
     }
     /*endregion*/
 
+    /*region MEDIA EDITOR AUDIO*/
+    .audio-editor {
+        > div {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            max-width: 750px;
+            border-top: solid 1px rgba(222,222,222,.4);
+            border-bottom: solid 1px rgba(222,222,222,.4);
+
+            .audio-image-container {
+                display: table-cell;
+                vertical-align: top;
+                width: 130px;
+                padding: 14px 0;
+            }
+
+            .audio-player-container {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 14px 0;
+            }
+        }
+
+        .audio-image {
+            display: block;
+            width: 113px;
+            height: 113px;
+            border-radius: 2px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .audio-title {
+            white-space: pre-wrap;
+            margin-bottom: .8em;
+        }
+    }
+    /*endregion*/
+
     /*#region CURATION*/
     .link-curation-block {
         min-height: 72px;
