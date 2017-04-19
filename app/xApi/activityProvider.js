@@ -410,19 +410,22 @@
         }
 
         function getMatchingQuestionActivityAndResult(question, answer, section) {
-            var formattedAnswer = _.map(question.answers, function (pair) {
+            var sources = _.pluck(question.answers, 'key'),
+				targets = _.uniq(_.pluck(question.answers, 'value'));
+				
+			var	formattedAnswer = _.map(question.answers, function (pair, index) {
                 var answerPair = _.find(answer, function (a) {
                     return a.id === pair.id;
                 });
 
-                return { key: pair.key, value: answerPair && answerPair.value ? answerPair.value : '' };
+                return { key: index.toString(), value: answerPair && answerPair.value ? _.indexOf(targets, answerPair.value) : '' };
             });
 
             return {
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
                     response: _.map(formattedAnswer, function (item) {
-                        return item.key.toLowerCase() + "[.]" + item.value.toLowerCase();
+                        return item.key + "[.]" + item.value;
                     }).join("[,]")
                 }),
                 object: new ActivityModel({
@@ -430,14 +433,14 @@
                     definition: new InteractionDefinitionModel({
                         name: new LanguageMapModel(question.title),
                         interactionType: interactionTypes.matching,
-                        correctResponsesPattern: [_.map(question.answers, function (item) {
-                            return item.key.toLowerCase() + "[.]" + item.value.toLowerCase();
+                        correctResponsesPattern: [_.map(question.answers, function (item, index) {
+                            return index.toString() + "[.]" + _.indexOf(targets, item.value);
                         }).join("[,]")],
-                        source: _.map(question.answers, function (item) {
-                            return { id: item.key.toLowerCase(), description: new LanguageMapModel(item.key) }
+                        source: _.map(sources, function (item, index) {
+                            return { id: index.toString(), description: new LanguageMapModel(item) }
                         }),
-                        target: _.map(question.answers, function (item) {
-                            return { id: item.value.toLowerCase(), description: new LanguageMapModel(item.value) }
+                        target: _.map(targets, function (item, index) {
+                            return { id: index.toString(), description: new LanguageMapModel(item) }
                         })
                     })
                 })

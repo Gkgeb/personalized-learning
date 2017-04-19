@@ -25,6 +25,14 @@
         if (typeof spec.choices != typeof undefined) {
             this.choices = spec.choices;
         }
+		
+		if (typeof spec.source != typeof undefined) {
+            this.source = spec.source;
+        }
+		
+		if (typeof spec.target != typeof undefined) {
+            this.target = spec.target;
+        }
     }
 
     return ActivityDefinition;
