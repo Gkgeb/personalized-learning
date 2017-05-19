@@ -1,4 +1,4 @@
-﻿define(['../verbs'], function (verbs) {
+﻿define(['../verbs', 'publishSettings'], function (verbs, publishSettings) {
     "use strict";
 
     var settingsModule = {
@@ -34,7 +34,7 @@
     };
 
     var host = window.location.host;
-    var lrsHost = (host.indexOf('localhost') === 0 || host.indexOf('elearning-staging') === 0 || host.indexOf('elearning-branches') === 0) ? 'reports-staging.easygenerator.com' : 'reports.easygenerator.com';
+    var lrsHost = publishSettings.defaultLRSUrl || 'reports.easygenerator.com';
 
     var defaultXapi = {
         lrs: {
