@@ -96,17 +96,7 @@
     }
 
     function getSettingsToken() {
-        var tokenDefer = $.Deferred();
-        var localStorageProvider = window.parent.localStorageProvider;
-        if (!localStorageProvider) {
-            tokenDefer.resolve(localStorage['token.settings']);
-        }
-        localStorageProvider.getItem('token.settings').then(function(value) {
-            tokenDefer.resolve(value);
-        }).fail(function() {
-            tokenDefer.resolve('');
-        });
-        return tokenDefer.promise();
+        return window.egApi.getSettingsToken();
     }
 
     function setSettingsToken(){
@@ -114,10 +104,9 @@
         if(headers.Authorization){
             dfd.resolve();
         } else {
-            getSettingsToken().then(function(token){
-                headers.Authorization += 'Bearer ' + (getURLParameter('token') || token);
-                dfd.resolve();
-            });
+            var token = getSettingsToken();
+            headers.Authorization += 'Bearer ' + (getURLParameter('token') || token);
+            dfd.resolve();
         }
         return dfd.promise();
     }

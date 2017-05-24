@@ -21,7 +21,8 @@
         getSettings: getSettings,
         saveSettings: saveSettings,
         sendNotificationToEditor: sendNotificationToEditor,
-        showSettings: showSettings
+        showSettings: showSettings,
+        getSettingsToken: getSettingsToken
     };
 
     function getSettingsToken() {
