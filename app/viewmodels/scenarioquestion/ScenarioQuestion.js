@@ -6,7 +6,6 @@
         
         Question.call(that, question);
         
-        that.content = question.content;
         that.embedCode = ko.observable(question.embedCode);
         that.customSubmitButton = 'viewmodels/scenarioquestion/submitQuestion';
         that.customSumbitData = {

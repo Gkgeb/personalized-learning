@@ -5,8 +5,6 @@
 
         Question.call(that, question);
 
-        that.content = question.content;
-
         that.background = question.background;
         that.dropspots = _.map(question.dropspots, function (dropspot) {
             if (dropspot.placed) {

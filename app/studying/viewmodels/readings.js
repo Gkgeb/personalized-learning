@@ -88,7 +88,7 @@
             }
         }
         
-        Q.allSettled([vm.learningContent.load(), vm.correctFeedback.load(), vm.incorrectFeedback.load()]).then(function () {
+        Q.allSettled([vm.learningContent.load(), vm.questionInstructions.load(), vm.correctFeedback.load(), vm.incorrectFeedback.load()]).then(function () {
             setTimeout(function () {
                 viewmodel.isReady(true);
             }, 200);

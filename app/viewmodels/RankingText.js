@@ -5,9 +5,7 @@
         var that = this;
 
         that.rankingItems = ko.observableArray(question.rankingItems);
-
-        that.content = question.content;
-        
+       
         that.isDirty = ko.observable(false);
         that.markDirty = function() {
             that.isDirty(true);

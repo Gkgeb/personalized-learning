@@ -1,4 +1,4 @@
-define(['durandal/composition','knockout'], function (composition, ko) {
+﻿define(['durandal/composition','knockout'], function (composition, ko) {
     'use strict';
     
     return {
@@ -6,12 +6,12 @@ define(['durandal/composition','knockout'], function (composition, ko) {
     };
     
     function install(){
-        ko.bindingHandlers.learningContent = {
+        ko.bindingHandlers.contentBlock = {
             init: function (element, valueAccessor) {
                 var $element = $(element),
                     html = valueAccessor();
 
-                var dataType = getLearningContentType(html);
+                var dataType = getContentBlockType(html);
 
                 switch(dataType){
                     case 'hotspot': 
@@ -31,9 +31,9 @@ define(['durandal/composition','knockout'], function (composition, ko) {
             }
         };
 
-        composition.addBindingHandler('learningContent');
+        composition.addBindingHandler('contentBlock');
 
-        function getLearningContentType(data){
+        function getContentBlockType(data) {
             var $output = $('<output>').html(data),
                 dataType = $('[data-type]', $output).attr('data-type');
 

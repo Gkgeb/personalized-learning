@@ -13,7 +13,6 @@
                 .value()
         ;
 
-        that.content = question.content;
         that.targets = ko.observableArray(_.map(values, function (value) {
             return new Target(value);
         }));
