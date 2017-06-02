@@ -158,6 +158,9 @@
                 }
             });
 
+            // (^\ x_x /^)
+            statementsQueue.enqueue(undefined);
+
             return dfd.promise;
         }
 

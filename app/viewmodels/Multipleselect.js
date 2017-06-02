@@ -6,6 +6,8 @@
 
         Question.call(that, question);
 
+        that.content = question.content;
+
         that.options = _.chain(question.answers)
             .sample(question.answers.length)
             .map(function (option) {

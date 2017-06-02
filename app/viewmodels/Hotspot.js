@@ -4,6 +4,7 @@
         var that = this;
         Question.call(that, question);
 
+        that.content = question.content;
         that.background = question.background;
         that.isMultiple = question.isMultiple;
         that.submit = function (preventSendingParentProgress) {

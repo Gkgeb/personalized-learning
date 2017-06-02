@@ -1,12 +1,8 @@
 ﻿<section class="textmatching">
 
-    <!-- ko if: questionInstructions().length > 0 -->
+    <!-- ko if: content -->
     <div class="question-content">
-        <div>
-            <!-- ko foreach: questionInstructions -->
-            <div class="styled-content" data-bind="contentBlock: $data "></div>
-            <!-- /ko -->
-        </div>
+        <div class="styled-content" data-bind="html: content, wrapElements: content"></div>
     </div>
     <!-- /ko -->
 

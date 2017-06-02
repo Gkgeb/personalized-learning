@@ -82,7 +82,7 @@ define(function (require) {
         require('_components/bindingHandlers/toggleVisibleBindingHandler').install();
         require('_components/bindingHandlers/questionProgressBindingHandler').install();
         require('_components/bindingHandlers/circleProgressBindingHandler').install();
-        require('_components/bindingHandlers/contentBlockBindingHandler').install();
+        require('_components/bindingHandlers/learningContentBindingHandler').install();
         require('_components/bindingHandlers/dropDownBindingHandler').install();
         require('_components/bindingHandlers/customFocusBindingHandler').install();
         

@@ -42,20 +42,13 @@
 
 
     function activate() {
-        var promises = [];
-        viewModel.questions([]);
-
-        _.each(course.sections, function (section) {
-            _.each(section.questions, function (question) {
-                var vm = factory.createQuestionViewModel(question);
-                viewModel.questions.push(vm);
-
-                promises.push(vm.questionInstructions.load());
+        return Q.fcall(function () {
+            _.each(course.sections, function (section) {
+                _.each(section.questions, function (question) {
+                    viewModel.questions.push(factory.createQuestionViewModel(question));
+                });
             });
-        });
-
-        return Q.allSettled(promises)
-
+        })
         ["catch"](function (reason) {
             console.error(reason);
         });
