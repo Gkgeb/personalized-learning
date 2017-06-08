@@ -34,8 +34,22 @@
         patterns: {
             email: /^[^@\s]+@[^@\s]+$/,
             isoDuration: /^PT[0-9]{1,2}H[0-9]{1,2}M[0-9]{1,2}S$/
+        },
+        
+        documents: {
+            types: {
+                pdf: 'pdf',
+                word: 'word',
+                exel: 'exel',
+                powerpoint: 'powerpoint',
+                zip: 'zip'
+            },
+            downloadLocalizationKey: '[download]',
+            containerSelector: '.document-container',
+            sizeAttrName: 'data-document-size-kb',
+            typeAttrName: 'data-document-type',
+            downloadBtnSelector: '.download-document-btn'
         }
-
     };
 
 });

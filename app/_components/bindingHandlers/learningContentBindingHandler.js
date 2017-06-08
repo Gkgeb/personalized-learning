@@ -1,4 +1,4 @@
-define(['durandal/composition','knockout'], function (composition, ko) {
+define(['durandal/composition','knockout', 'helpers/documentBlock'], function (composition, ko, documentBlockHelper) {
     'use strict';
     
     return {
@@ -14,7 +14,7 @@ define(['durandal/composition','knockout'], function (composition, ko) {
                 var dataType = getLearningContentType(html);
 
                 switch(dataType){
-                    case 'hotspot': 
+                    case 'hotspot': {
                         var hotspotOnImage = HotspotStorage.create($(html)[0]);
                         
 						$element.html(hotspotOnImage.element);
@@ -24,16 +24,23 @@ define(['durandal/composition','knockout'], function (composition, ko) {
 							HotspotStorage.remove(hotspotOnImage);
 						});
                         break;
-                    default:
+                    }
+                    case 'document': {
+                        var content = documentBlockHelper.getDocumentBlockContent(html);
+                        $element.append(content);
+                        break;
+                    }
+                    default:{
                         $element.html(html);
                         return ko.bindingHandlers.wrapElements.init(element, valueAccessor);
+                    }
                 }
             }
         };
 
         composition.addBindingHandler('learningContent');
 
-        function getLearningContentType(data){
+        function getLearningContentType(data) {
             var $output = $('<output>').html(data),
                 dataType = $('[data-type]', $output).attr('data-type');
 
