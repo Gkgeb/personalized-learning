@@ -278,6 +278,68 @@
     }
     /*endregion*/
 
+    /*region documents*/
+    .document-editor > div {
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(66, 81, 95, 0.1);
+        .document-container {
+            display: table;
+            width: 100%;
+            .download-document-btn {
+                padding: 10px 20px;
+                border-radius: 3px;
+                white-space: nowrap;
+                text-decoration: none;
+                transition: background-color .3s;
+                color: rgba(66, 81, 95, 0.9);
+                background-color: rgba(66, 81, 95, 0.1);
+
+                &:hover, &:focus, &:active {
+                    color: rgba(66, 81, 95, 1);
+                    background-color: rgba(66, 81, 95, 0.2);
+                }
+            }
+            .document-icon, .document-title, .download-document-btn-container, .separator {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .document-icon {
+                font-size: 36px;
+                color: rgba(66, 81, 95, 0.5);
+
+                .icon-container {
+                    position: relative;
+
+                    .document-type-text {
+                        position: absolute;
+                        font-family: 'Arial';
+                        text-transform: uppercase;
+                        font-size: 10px;
+                        top: 16px;
+                        left: 6px;
+                        line-height: 1;
+                    }
+                }
+            }
+            .separator {
+                padding: 10px;
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 1px;
+                    height: 22px;
+                    background-color: rgba(66, 81, 95, 0.1);
+                }
+            }
+            .document-title {
+                width: 100%;
+                font-size: 14px;
+                color: rgba(66, 81, 95, 0.8);
+            }
+        }
+    }
+    /*endregion*/
+
     /*region MEDIA EDITOR AUDIO*/
     .audio-editor {
         > div {
