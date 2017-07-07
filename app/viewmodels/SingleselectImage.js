@@ -4,7 +4,6 @@
         var that = this;
         Question.call(that, question);
 
-        that.content = question.content;
         that.selectedOption = ko.observable();
         that.isDirty = ko.computed(function () {
             return !!that.selectedOption();

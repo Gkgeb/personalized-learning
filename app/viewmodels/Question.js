@@ -9,12 +9,21 @@
         this.isSurveyMode = question.hasOwnProperty('isSurvey') && question.isSurvey;
         this.learningContent = ko.observableArray([]);
         this.learningContent.load = function () {
+            return loadContentBlocks.apply(this, [question.learningContents]);
+        }
+
+        this.questionInstructions = ko.observableArray([]);
+        this.questionInstructions.load = function () {
+            return loadContentBlocks.apply(this, [question.questionInstructions]);
+        }
+
+        function loadContentBlocks(contentBlocks) {
             var that = this;
             var promises = [];
             var content = [];
 
-            _.each(question.learningContents, function (learnignContent, index) {
-                promises.push(http.get(learnignContent, { dataType: 'html' }).then(function (loadedContent) {
+            _.each(contentBlocks, function (contentBlock, index) {
+                promises.push(http.get(contentBlock, { dataType: 'html' }).then(function (loadedContent) {
                     content.push({
                         index: index,
                         content: loadedContent

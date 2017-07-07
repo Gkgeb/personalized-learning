@@ -34,7 +34,7 @@
                  cache: false
              }).done(function (response) {
                  var promises = [];
-                
+
                  var questionShortIds = publishSettings.questionShortIds || {};
 
                  course.id = response.id;
@@ -44,13 +44,13 @@
 
                  _.each(response.sections, function (dobj) {
                      var section = new Section(dobj.id, dobj.title);
-                        
+
                      _.each(dobj.questions, function (dq) {
                          var spec = {
-                            id: dq.id,
-                            shortId: questionShortIds[dq.id],
-                            title: dq.title,
-                            type: dq.type
+                             id: dq.id,
+                             shortId: questionShortIds[dq.id],
+                             title: dq.title,
+                             type: dq.type
                          };
                          var question;
 
@@ -73,6 +73,11 @@
                                      });
                                  });
                                  question = new FillInTheBlanks(spec, answers);
+                                 if (dq.hasContent) {
+                                     promises.push(http.get('content/' + dobj.id + '/' + dq.id + '/content.html', { dataType: 'html' }).then(function(content) {
+                                         question.content = content;
+                                     }));
+                                 }
                                  break;
                              case constants.questionTypes.dragAndDrop:
                                  question = new DragAndDrop(spec, dq.background, dq.dropspots);
@@ -102,12 +107,6 @@
                                  return undefined;
                          }
 
-                         if (dq.hasContent) {
-                             promises.push(http.get('content/' + dobj.id + '/' + dq.id + '/content.html', { dataType: 'html' }).then(function (content) {
-                                 question.content = content;
-                             }));
-                         }
-
                          if (dq.hasCorrectFeedback) {
                              question.correctFeedback = 'content/' + dobj.id + '/' + dq.id + '/correctFeedback.html';
                          }
@@ -117,6 +116,10 @@
                          }
 
                          question.learningContents = _.map(dq.learningContents, function (item) {
+                             return 'content/' + dobj.id + '/' + dq.id + '/' + item.id + '.html';
+                         });
+
+                         question.questionInstructions = _.map(dq.questionInstructions, function (item) {
                              return 'content/' + dobj.id + '/' + dq.id + '/' + item.id + '.html';
                          });
 

@@ -1,8 +1,12 @@
 ﻿<section class="ranking-text">
 
-    <!-- ko if: content -->
+    <!-- ko if: questionInstructions().length > 0 -->
     <div class="question-content">
-        <div class="styled-content" data-bind="html: content, wrapElements: content"></div>
+        <div>
+            <!-- ko foreach: questionInstructions -->
+            <div class="styled-content" data-bind="contentBlock: $data "></div>
+            <!-- /ko -->
+        </div>
     </div>
     <!-- /ko -->
     <div data-bind="dragula: { data: rankingItems, afterDrop: markDirty }" class="gu-unselectable">
