@@ -25,8 +25,8 @@
                     }
 
                     if ($parent.prop('tagName') == "TD" && $parent[0].style.width == "") {
-                        $wrapper.css('width', $image[0].style.width);
-                        $wrapper.css('height', $image[0].style.height);
+                        $wrapper.css('width', $self[0].style.width);
+                        $wrapper.css('height', $self[0].style.height);
                     }
                     
                     $self.wrap($wrapper);
