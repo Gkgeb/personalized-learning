@@ -19,6 +19,8 @@
   "dependencies": {
     "components-webfontloader": "~1.6.3",
     "easygenerator-plugins": "*",
-    "knockout-dragula": "~0.2.2"
+    "knockout-dragula": "~0.2.2",
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
   }
 }
