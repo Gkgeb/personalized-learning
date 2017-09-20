@@ -21,6 +21,7 @@
         'upgrade account hint': 'You have to <a target="_blank" href="/account/upgrade">upgrade your account</a> in order to set custom course logo',
         'logo update': 'Change',
         'logo remove': 'Clear',
+        'httpIsNotAllowed': 'HTTP content is not allowed. Please use HTTPS.',
         //background
         'background change': 'Change background:',
         'background update': 'Change background',
