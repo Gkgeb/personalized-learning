@@ -19,13 +19,13 @@
         return defer.promise();   
     }
     function isHttps(url) {
-        return /^(?:https:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&\'\(\)\*\+,;=.]+$/gm.test(url);
+        return /^(?:https:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&\'\(\)\*\+,;=.%]+$/gm.test(url);
     }
     function isHttp(url) {
-        return /^(?:http:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&\'\(\)\*\+,;=.]+$/gm.test(url);
+        return /^(?:http:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&\'\(\)\*\+,;=.%]+$/gm.test(url);
     }
     function isUrl(url) {
-        return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&\'\(\)\*\+,;=.]+$/gm.test(url);
+        return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&\'\(\)\*\+,;=.%]+$/gm.test(url);
     }
     function normalizeUrl(url) {
         return /^https/gm.test(url) ? url : 'https://' + url;
