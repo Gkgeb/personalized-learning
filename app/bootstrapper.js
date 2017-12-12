@@ -90,6 +90,7 @@ define(function (require) {
         require('viewmodels/bindingHandlers/Hotspot').install();
         require('viewmodels/bindingHandlers/FillInTheBlanks').install();
         require('viewmodels/bindingHandlers/TextMatching').install();
+        require('viewmodels/bindingHandlers/RankingText').install();
     }
 
 }); 

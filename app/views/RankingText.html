@@ -10,7 +10,7 @@
     </div>
     <!-- /ko -->
     <div data-bind="dragula: { data: rankingItems, afterDrop: markDirty }" class="gu-unselectable">
-        <div class="ranking-item gu-draggable">
+        <div class="ranking-item gu-draggable" data-bind="preventDefaultTouchEvent: true">
             <span class="ranking-item-icon"></span>
             <span class="ranking-item-text" data-bind="text: text"></span>
         </div>
