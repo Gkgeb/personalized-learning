@@ -19,24 +19,8 @@
 
         function loadContentBlocks(contentBlocks) {
             var that = this;
-            var promises = [];
-            var content = [];
-
-            _.each(contentBlocks, function (contentBlock, index) {
-                promises.push(http.get(contentBlock, { dataType: 'html' }).then(function (loadedContent) {
-                    content.push({
-                        index: index,
-                        content: loadedContent
-                    });
-                }));
-            });
-
-
-            return Q.all(promises).then(function () {
-                that(_.chain(content)
-                    .sortBy(function (item) { return item.index; })
-                    .map(function (item) { return item.content; })
-                    .value());
+            return loadContent(contentBlocks).then(function () {
+                that(contentBlocks);
 
             })
             ["catch"](function (reason) {
@@ -76,4 +60,19 @@
         }
     }
 
+    function loadContent(items) {
+        var promises = [];
+
+        _.each(items, function (item) {
+            if(typeof item.content === typeof undefined) {
+                promises.push(http.get(item.contentUrl, { dataType: 'html' }).then(function (content) {
+                    item.content = content;
+                }));
+            }
+
+            promises.push(loadContent(item.children));
+        });
+
+        return Q.all(promises);
+    }
 });

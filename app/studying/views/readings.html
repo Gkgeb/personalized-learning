@@ -51,7 +51,12 @@
                     <h3 class="learning-content" data-translate-text="[learning content]">Learning content</h3>
                     <div>
                         <!-- ko foreach: learningContent -->
-                        <div class="styled-content" data-bind="contentBlock: $data "></div>
+                        <!-- ko ifnot: children.length -->
+                        <div class="styled-content" data-bind="contentBlock: content"></div>
+                        <!-- /ko -->
+                        <!-- ko if: children.length -->
+                        <div class="expandable-block-wrapper" data-bind="compose: { model:'viewmodels/expandableBlock', activationData: $data }"></div>
+                        <!-- /ko -->
                         <!-- /ko -->
                     </div>
                 </div>

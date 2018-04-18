@@ -8,3 +8,4 @@ Web.config
 *.suo
 *.sln
 /media
+.DS_Store

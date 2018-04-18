@@ -1,4 +1,5 @@
-﻿define(['entities/course',
+﻿define(['entities/ContentBlock',
+    'entities/course',
     'entities/Section',
     'entities/Multipleselect',
     'entities/FillInTheBlanks',
@@ -16,7 +17,7 @@
      '_',
      'plugins/http', 'publishSettings'],
 
-     function (course, Section, Multipleselect, FillInTheBlanks, DragAndDrop, Singleselect, SingleselectImage,
+     function (ContentBlock, course, Section, Multipleselect, FillInTheBlanks, DragAndDrop, Singleselect, SingleselectImage,
          TextMatching, Statement, Hotspot, ScenarioQuestion, RankingText, constants, Q, _, http, publishSettings) {
          'use strict';
 
@@ -116,12 +117,14 @@
                          }
 
                          question.learningContents = _.map(dq.learningContents, function (item) {
-                             return 'content/' + dobj.id + '/' + dq.id + '/' + item.id + '.html';
+                            return mapContentBlock(item, dobj.id, dq.id);
                          });
 
                          question.questionInstructions = _.map(dq.questionInstructions, function (item) {
-                             return 'content/' + dobj.id + '/' + dq.id + '/' + item.id + '.html';
+                            return mapContentBlock(item, dobj.id, dq.id);
                          });
+
+                         
 
                          section.questions.push(question);
                      });
@@ -148,5 +151,14 @@
 
              return dfd.promise;
          }
+
+         function mapContentBlock(item, dobjId, dqId) {
+            var contentUrl = 'content/' + dobjId + '/' + dqId + '/' + item.id + '.html';
+            var children = _.map(item.children, function(childItem) {
+                return mapContentBlock(childItem, dobjId, dqId);
+            });
+
+            return new ContentBlock(item.id, contentUrl, children);
+        }
 
      });
