@@ -11,11 +11,10 @@
                     $animationContainer = $element.find('[data-animate]'),
                     speed = 300;
 
-                $animationContainer.css('overflow', 'hidden');
                 if (isExpanded()) {
-                    $animationContainer.css('height', '').hide().slideDown(speed);
+                    $animationContainer.css('height', '').hide().slideDown(speed, function(){$animationContainer.css('overflow', '')});
                 } else {
-                    $animationContainer.animate({height: 0}, speed);
+                    $animationContainer.css('overflow', 'hidden').animate({height: 0}, speed);
                 }
             }
         }
