@@ -27,6 +27,8 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'queryStringP
                 modules['modules/localstorage_progresstracker'] = true;
             }
 
+            modules['modules/lti'] = true;
+
             return readPublishSettings().then(function() {
                 return dataContext.initialize().then(function() {
                     return userContext.initialize().then(function () {
