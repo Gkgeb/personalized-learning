@@ -12,6 +12,8 @@ define(['entities/course', 'knockout', '_', 'windowOperations'],
             sections: [],
             progress: 0,
 
+            isSendingResults: ko.observable(false),
+
             isClosing: ko.observable(false),
             isClosed: ko.observable(false),
             close: close
@@ -24,9 +26,14 @@ define(['entities/course', 'knockout', '_', 'windowOperations'],
                 return { title: section.title, score: section.score() };
             });
             viewModel.progress = course.score();
+            viewModel.isSendingResults(true);
 
             course.finish().then(function () {
                 self.isCourseFinished = true;
+            }).fail(function (reason) {
+                windowOperations.alert(reason);
+            }).fin(function () {
+                viewModel.isSendingResults(false);
             });
         }
 

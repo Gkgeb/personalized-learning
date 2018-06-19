@@ -45,6 +45,7 @@
     "[tracking and tracing continue anyway]": "仍要继续",
     "[tracking and tracing hint without skip]": "请输入您的凭证并单击“开始并报告我的成绩”以开始课程。",
     "[tracking and tracing error hint without continue]": "重新启动课程。如果问题仍然存在，请联系您的课程提供商。",
+    "[tracking and tracing reporting progress]": "正在报告结果",
     "[answered]": "已回答",
     "[overall progress]": "总体进度",
     "[save and continue later]": "保存并稍后继续",

@@ -45,6 +45,7 @@
     "[tracking and tracing continue anyway]": "Продолжить",
     "[tracking and tracing hint without skip]": "Пожалуйста, укажите необходимые данные и нажмите \"Да, отслеживать мой прогресс\" для того, чтобы начать курс.",
     "[tracking and tracing error hint without continue]": "Нажмите \"Попробовать еще\".  Если ошибка повторяется, свяжитесь с организацией, предоставившей Вам курс.",
+    "[tracking and tracing reporting progress]": "Отправляем прогресс...",
     "[answered]": "пройдено",
     "[overall progress]": "общий прогресс",
     "[save and continue later]": "Сохранить и продолжить позже",

@@ -1,33 +1,66 @@
-﻿define(['jquery', 'eventManager', 'queryStringParameters'],
-    function ($, eventManager, queryStringParameters) {
+﻿define(['Q', 'jquery', 'eventManager', 'queryStringParameters'],
+    function (Q, $, eventManager, queryStringParameters) {
         'use strict';
+
+        var constants = {
+            sendResultAttemptsTimeout: 10000,
+            sendResultAttemptsCount: 10,
+            resultCallbackUrlParameterName: 'ltiResultCallbackUrl',
+            errorMessage: 'Something went wrong and your final score has not been reported ' + 
+                '(reason: LTI reporting failed). Please contact the author of the course.'
+        };
 
         return {
             initialize: initialize
         };
 
         function initialize() {
-            var ltiResultCallbackUrl = queryStringParameters.get('ltiResultCallbackUrl');
-            if (!ltiResultCallbackUrl) {
+            var resultCallbackUrl = queryStringParameters.get(constants.resultCallbackUrlParameterName);
+            if (!resultCallbackUrl) {
                 return;
             }
 
             eventManager.subscribeForEvent(eventManager.events.courseFinished)
-                .then(onCourseFinished.bind(this, ltiResultCallbackUrl));
+                .then(onCourseFinished.bind(this, resultCallbackUrl));
         }
 
-        function onCourseFinished(ltiResultCallbackUrl, course) {
-            var url = new URL(ltiResultCallbackUrl);
+        function onCourseFinished(resultCallbackUrl, course) {
+            var url = new URL(resultCallbackUrl);
             url.searchParams.append('score', course.score() / 100);
 
+            return sendRequest(url.toString());
+        }
+
+        function sendRequest(url, attemptNumber, defer) {
+            if (typeof defer === 'undefined') {
+                defer = Q.defer();
+            }
+
+            if (typeof attemptNumber === 'undefined') {
+                attemptNumber = 0;
+            }
+
             $.ajax({
-                url: url.toString(),
+                url: url,
                 dataType: 'jsonp',
                 xhrFields: {
                     withCredentials: true
                 }
-            });
-        }
+            }).always(function (response) {
+                if (response.status === 200) {
+                    return defer.resolve();
+                }
+                
+                if (attemptNumber >= constants.sendResultAttemptsCount) {
+                    return defer.reject(constants.errorMessage);
+                }
 
+                setTimeout(function () {
+                    sendRequest(url, ++attemptNumber, defer);
+                }, constants.sendResultAttemptsTimeout);
+            });
+
+            return defer.promise;
+        }
     }
 );

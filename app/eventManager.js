@@ -29,12 +29,12 @@
                 app.trigger(events.courseStarted);
             },
 
-            courseFinished = function (data, callback) {
-                return executeAfterSubscribersDone(events.courseFinished, data, callback);
+            courseFinished = function (data) {
+                return executeAfterSubscribersDone(events.courseFinished, data);
             },
 
-            courseFinalized = function(callback) {
-                return executeAfterSubscribersDone(events.courseFinalized, {}, callback);
+            courseFinalized = function() {
+                return executeAfterSubscribersDone(events.courseFinalized, {});
             },
 
             questionAnswered = function (data, preventSendingParentProgress) {
@@ -45,13 +45,9 @@
                 app.trigger(events.learningContentExperienced, data);
             },
 
-            executeAfterSubscribersDone = function (event, eventData, callback) {
+            executeAfterSubscribersDone = function (event, eventData) {
                 if (_.isUndefined(app.callbacks) || _.isUndefined(app.callbacks[event])) {
-                    return Q.fcall(function () {
-                        if (_.isFunction(callback)) {
-                            callback();
-                        }
-                    });
+                    return Q();
                 }
 
                 var promises = [];
@@ -65,11 +61,7 @@
                     }
                 });
 
-                return Q.all(promises).then(function () {
-                    if (_.isFunction(callback)) {
-                        callback();
-                    }
-                });
+                return Q.all(promises);
             };
 
         return {

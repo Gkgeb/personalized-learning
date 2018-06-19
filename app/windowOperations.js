@@ -5,10 +5,15 @@ define(['translation'],
 
         var
             windowOperations = {
+                alert: alert,
                 close: close
             };
 
         return windowOperations;
+
+        function alert(message) {
+            window.alert(message);
+        }
 
         function close(onClosed) {
             window.close();

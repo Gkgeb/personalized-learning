@@ -29,16 +29,13 @@
         course.isFinished = true;
         course.isCompleted = course.isSuccessful();
         course.result = course.score() / 100;
-        return Q.fcall(function () {
-            return eventManager.courseFinished(course);
-        });
+        
+        return eventManager.courseFinished(course);
     }
 
     function close() {
-        return Q.fcall(function() {
-            return eventManager.courseFinalized(function() {
-                eventManager.turnAllEventsOff();
-            });
+        return eventManager.courseFinalized().then(function () {
+            eventManager.turnAllEventsOff();
         });
     }
 
