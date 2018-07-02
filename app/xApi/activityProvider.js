@@ -196,16 +196,16 @@
             if (_.isUndefined(section)) {
                 throw 'Section is not found';
             }
-
-            var parts = getQuestionParts(data, section);
+            var contextObj = {};
+            contextObj.extensions = {};
+            var parts = getQuestionParts(data, section, contextObj);
 
             var parentUrl = rootCourseUrl + '#sections?section_id=' + section.id;
             
-            var contextObj = {};
             contextObj.contextActivities = new ContextActivitiesModel({
                 parent: [createActivity(parentUrl, section.title)]
             });
-            contextObj.extensions = {};
+
             contextObj.extensions["http://easygenerator/expapi/question/survey"] = data.question.hasOwnProperty('isSurvey') && data.question.isSurvey;
             contextObj.extensions["http://easygenerator/expapi/question/type"] = data.question.type;
 
@@ -224,23 +224,23 @@
 
         }
 
-        function getQuestionParts(data, section) {
+        function getQuestionParts(data, section, contextObj) {
             switch (data.question.type) {
                 case globalConstants.questionTypes.multipleSelect:
                 case globalConstants.questionTypes.singleSelectText:
                     return getSelectTextQuestionActivityAndResult(data.question, data.answer, section);
                 case globalConstants.questionTypes.fillInTheBlank:
-                    return getFillInQuestionActivityAndResult(data.question, data.answer, section);
+                    return getFillInQuestionActivityAndResult(data.question, data.answer, section, contextObj);
                 case globalConstants.questionTypes.singleSelectImage:
                     return getSingleSelectImageQuestionAcitivityAndResult(data.question, data.answer, section);
                 case globalConstants.questionTypes.statement:
                     return getStatementQuestionActivityAndResult(data.question, data.answer, section);
                 case globalConstants.questionTypes.dragAndDrop:
-                    return getDragAndDropTextQuestionActivityAndResult(data.question, data.answer, section);
+                    return getDragAndDropTextQuestionActivityAndResult(data.question, data.answer, section, contextObj);
                 case globalConstants.questionTypes.textMatching:
                     return getMatchingQuestionActivityAndResult(data.question, data.answer, section);
                 case globalConstants.questionTypes.hotspot:
-                    return getHotSpotQuestionActivityAndResult(data.question, data.answer, section);
+                    return getHotSpotQuestionActivityAndResult(data.question, data.answer, section, contextObj);
                 case globalConstants.questionTypes.scenario:
                     return getScenarioQuestionActivityAndResult(data.question, section);
                 case globalConstants.questionTypes.rankingText:
@@ -337,7 +337,8 @@
 
         }
 
-        function getFillInQuestionActivityAndResult(question, answer, section) {
+        function getFillInQuestionActivityAndResult(question, answer, section, contextObj) {
+            contextObj.extensions["http://easygenerator/expapi/question/content"] = question.content;
             return {
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
@@ -360,7 +361,8 @@
             };
         }
 
-        function getHotSpotQuestionActivityAndResult(question, answer, section) {
+        function getHotSpotQuestionActivityAndResult(question, answer, section, contextObj) {
+            contextObj.extensions["http://easygenerator/expapi/question/imageUrl"] = question.background;
             return {
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
@@ -384,7 +386,13 @@
             }
         }
 
-        function getDragAndDropTextQuestionActivityAndResult(question, answer, section) {
+        function getDragAndDropTextQuestionActivityAndResult(question, answer, section, contextObj) {
+            contextObj.extensions["http://easygenerator/expapi/question/imageUrl"] = question.background;
+
+            var correctAnswersTexts = _.map(question.dropspots, function (item) {
+                return item.text;
+            }).join('[,]');;
+            contextObj.extensions["http://easygenerator/expapi/question/answers"] = correctAnswersTexts
             return {
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
