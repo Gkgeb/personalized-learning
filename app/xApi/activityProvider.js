@@ -343,7 +343,8 @@
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
                     response: _.map(answer, function (item) {
-                        return item.text;
+                        var givenAnswer = question.answers.find(a => a.groupId === item.groupId);
+                        return item.text + "[.]" + givenAnswer.id;
                     }).join("[,]")
                 }),
                 object: new ActivityModel({
@@ -353,7 +354,7 @@
                         interactionType: interactionTypes.fillIn,
                         correctResponsesPattern: [
                             _.flatten(_.map(question.answers, function (item) {
-                                return item.text;
+                                return item.text + "[.]" + item.id;
                             })).join("[,]")
                         ]
                     })
