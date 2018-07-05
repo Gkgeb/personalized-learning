@@ -394,12 +394,18 @@
                 return item.text;
             }).join('[,]');;
             contextObj.extensions["http://easygenerator/expapi/question/answers"] = correctAnswersTexts
+            var enteredAnswersCoords = _.chain(question.dropspots).map(function (item) {
+                var userAnswer = answer.find(function (a) { return a.id === item.id });
+                if (userAnswer) {
+                    return '(' + userAnswer.x + ',' + userAnswer.y + ')';
+                } else {
+                    return '(-1,-1)';
+                }
+            }).value().join('[,]')
             return {
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
-                    response: _.map(answer, function (item) {
-                        return '(' + item.x + ',' + item.y + ')';
-                    }).join("[,]")
+                    response: enteredAnswersCoords
                 }),
 
                 object: new ActivityModel({
