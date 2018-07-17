@@ -343,8 +343,7 @@
                 result: new ResultModel({
                     score: new ScoreModel(question.score / 100),
                     response: _.map(answer, function (item) {
-                        var givenAnswer = question.answers.find(a => a.groupId === item.groupId);
-                        return item.text + "[.]" + givenAnswer.id;
+                        return item.text + "[.]" + item.groupId;
                     }).join("[,]")
                 }),
                 object: new ActivityModel({
@@ -354,7 +353,7 @@
                         interactionType: interactionTypes.fillIn,
                         correctResponsesPattern: [
                             _.flatten(_.map(question.answers, function (item) {
-                                return item.text + "[.]" + item.id;
+                                return item.text + "[.]" + item.groupId;
                             })).join("[,]")
                         ]
                     })
@@ -393,7 +392,7 @@
             var correctAnswersTexts = _.map(question.dropspots, function (item) {
                 return item.text;
             }).join('[,]');;
-            contextObj.extensions["http://easygenerator/expapi/question/answers"] = correctAnswersTexts
+            contextObj.extensions["http://easygenerator/expapi/question/answers"] = correctAnswersTexts;
             var enteredAnswersCoords = _.chain(question.dropspots).map(function (item) {
                 var userAnswer = answer.find(function (a) { return a.id === item.id });
                 if (userAnswer) {
