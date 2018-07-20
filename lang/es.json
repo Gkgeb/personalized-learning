@@ -66,5 +66,6 @@
     "[login skip]": "Omitir el paso, iniciar de forma anónima",
     "[confirn your name and email]": "De acuerdo, el nombre y la dirección de correo electrónico son correctos",
     "[login header]": "Preséntese",
-    "[survey mode caption]": "La respuesta no afectará a su progreso"
+    "[survey mode caption]": "La respuesta no afectará a su progreso",
+    "[back]": "Atrás"
 }

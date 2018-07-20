@@ -72,6 +72,11 @@
       "code": "ca",
       "name": "Catalan",
       "url": "lang/ca.json"
+    },
+    {
+      "code": "kin",
+      "name": "Kinyarwanda",
+      "url": "lang/kin.json"
     }
   ]
 }

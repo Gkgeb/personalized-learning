@@ -66,5 +66,6 @@
     "[login skip]": "Schritt überspringen, anonym beginnen",
     "[confirn your name and email]": "OK, Name und E-Mail sind korrekt",
     "[login header]": "Sich selbst vorstellen",
-    "[survey mode caption]": "Die Antwort wirkt sich nicht auf Ihren Fortschritt aus"
+    "[survey mode caption]": "Die Antwort wirkt sich nicht auf Ihren Fortschritt aus",
+    "[back]": "Zurück"
 }

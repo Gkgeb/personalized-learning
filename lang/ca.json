@@ -64,5 +64,6 @@
     "[confirn your name and email]": "D'acord, el nom i l'adreça de correu electrònic són correctes",
     "[login header]": "presenteu-vos",
     "[survey mode caption]": "La resposta no afectarà el seu progrés",
-    "[download]": "Descarregar"
+    "[download]": "Descarregar",
+    "[back]": "Zpět"
 }

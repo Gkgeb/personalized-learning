@@ -66,5 +66,6 @@
     "[login skip]": "Sla stap over, start anoniem",
     "[confirn your name and email]": "OK, naam en email zijn correct",
     "[login header]": "Introduceer jezelf",
-    "[survey mode caption]": "Het antwoord heeft geen invloed op de resultaten van deze cursus"
+    "[survey mode caption]": "Het antwoord heeft geen invloed op de resultaten van deze cursus",
+    "[back]": "Terug"
 }

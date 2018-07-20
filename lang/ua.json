@@ -67,5 +67,13 @@
     "[confirn your name and email]": "ОК, ім'я та e-mail коректні",
     "[login header]": "Представтеся",
     "[survey mode caption]": "Відповідь на це питання не вплине на ваш прогрес",
-    "[download]": "Завантажити"
+    "[download]": "Завантажити",
+    "[results send error title]": "Ваш прогрес був збережений, але webhook НЕ був надісланий автору",
+    "[try to submit again key]": "Будь-ласка, спробуйте відправити результати ще раз",
+    "[contanct with author key]": "Будь-ласка, повідомте про це автору, якщо проблема досі існує",
+    "[general-message-key]": "Помилка:",
+    "[error-message-key]": "не вдалося підключитися до хосту",
+    "[resend-results-key]": "Відправити результати ще раз",
+    "[close without reporting results]": "Завершити курс без відправки моїх результатів",
+    "[back]": "Назад"
 }

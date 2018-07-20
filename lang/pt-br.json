@@ -66,5 +66,6 @@
     "[login skip]": "Pular passo, iniciar anonimamente",
     "[confirn your name and email]": "Ok, nome e e-mail corretos",
     "[login header]": "Apresente-se",
-    "[survey mode caption]": "A resposta não afetará seu progresso"
+    "[survey mode caption]": "A resposta não afetará seu progresso",
+    "[back]": "Voltar"
 }

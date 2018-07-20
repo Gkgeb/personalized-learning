@@ -67,5 +67,13 @@
     "[confirn your name and email]": "OK, name and email are correct",
     "[login header]": "Introduce yourself",
     "[survey mode caption]": "The answer will not have any impact on your progress",
-    "[download]": "Download"
+    "[download]": "Download",
+    "[results send error title]": "Your progress has been saved but the webhook has NOT been sent to the author",
+    "[try to submit again key]": "Please try to submit results again",
+    "[contanct with author key]": "Contact with course author if the problem still persists",
+    "[general-message-key]": "Error message:",
+    "[error-message-key]": "couldn't connect to host",
+    "[resend-results-key]": "Submit results again",
+    "[close without reporting results]": "Close the course without reporting my results",
+    "[back]": "Back"
 }
