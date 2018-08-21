@@ -17,6 +17,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'queryStringP
     'settingsReader', 'translation', 'limitAccess/accessLimiter', 'publishSettings'],
     function (system, app, viewLocator, queryStringParameters, dataContext, userContext, bootstrapper, Q, modulesInitializer, templateSettings, settingsReader, translation, accessLimiter, publishSettings) {
         app.title = '';
+
         app.start().then(function() {
             bootstrapper.run();
             viewLocator.useConvention();
@@ -35,7 +36,6 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'queryStringP
                         return readTemplateSettings().then(function(settings) {
                             return initTemplateSettings(settings).then(function() {
                                 return initTranslations(settings).then(function() {
-
                                     modulesInitializer.register(modules);
                                     app.setRoot('viewmodels/shell');
                                 });
@@ -74,6 +74,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'queryStringP
                     }
 
                     modules['xApi/initializer'] = templateSettings.xApi;
+                    modules['modules/webhooks'] = templateSettings.webhooks;
                 });
             }
 

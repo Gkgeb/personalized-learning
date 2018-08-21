@@ -50,6 +50,17 @@
             typeAttrName: 'data-document-type',
             downloadBtnSelector: '.download-document-btn',
             documentTitleWrapperSelector: '.document-title-wrapper'
+        },
+
+        dialogs: {
+            resendResults: {
+                skipSendingResultsKey: '[close without reporting results]',
+                endpointNameReplaceKey: '{endpointName}',
+                webhooks: {
+                    resultsSendErrorTitleKey: '[results send error title]',
+                    endpointNameKey: '[webhooks endpoint name key]'
+                }   
+            }
         }
     };
 

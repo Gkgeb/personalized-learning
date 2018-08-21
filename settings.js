@@ -15,6 +15,9 @@
         },
         "allowedVerbs":["started","stopped","mastered","answered","passed","failed","progressed"]
     },
+    "webhooks": {
+        "url": ""
+    },
     "languages": {
         "selected": "en"
     }

@@ -132,7 +132,10 @@
                         credentials: {}
                     }
                 },
-                masteryScore: {}
+                masteryScore: {},
+                webhooks: {
+                    url: ""
+                }
             };
         }
         return settings;

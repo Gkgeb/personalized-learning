@@ -8,13 +8,15 @@
         isError: ko.observable(false),
 
         trackingData: null,
-        languages: null
+        languages: null,
+        webhooks: null,
     };
 
     viewModel.getCurrentSettingsData = function (settings) {
         return $.extend({}, settings || currentSettings, {
             xApi: viewModel.trackingData.getData(),
-            languages: viewModel.languages.getData()
+            languages: viewModel.languages.getData(),
+            webhooks: viewModel.webhooks.getData(),
         });
     };
 
@@ -47,6 +49,7 @@
 
             viewModel.trackingData = new app.TrackingDataModel(settings.xApi);
             viewModel.languages = new app.LanguagesModel(manifest.languages, settings.languages);
+            viewModel.webhooks = new app.Webhooks(settings.webhooks || manifest.webhooks);
 
             currentSettings = viewModel.getCurrentSettingsData(settings);
             currentExtraData = viewModel.getCurrentExtraData();

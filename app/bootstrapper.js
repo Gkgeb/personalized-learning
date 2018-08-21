@@ -85,6 +85,7 @@ define(function (require) {
         require('_components/bindingHandlers/contentBlockBindingHandler').install();
         require('_components/bindingHandlers/dropDownBindingHandler').install();
         require('_components/bindingHandlers/customFocusBindingHandler').install();
+        require('_components/bindingHandlers/blockBodyScrollBinding').install();
         
         require('viewmodels/bindingHandlers/DragAndDrop').install();
         require('viewmodels/bindingHandlers/Hotspot').install();

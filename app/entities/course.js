@@ -43,7 +43,7 @@
         if (!course.isFinished) {
             return constants.course.statuses.inProgress;
         }
-
+        
         return course.isCompleted ? constants.course.statuses.completed : constants.course.statuses.failed;
     }
 

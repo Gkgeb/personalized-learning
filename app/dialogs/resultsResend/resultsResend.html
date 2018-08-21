@@ -1,0 +1,50 @@
+<section class="fullscreen-popup-container resend-results" data-bind="css: { attached: isCompositionComplete }">
+    <div class="fp-content-row">
+        <div class="fp-content-cell">
+            <div class="fp-content">
+                <div class="fp-content-step send-error" data-bind="css: { show: isCompositionComplete }">
+                    <h3 data-bind="text: resultsSendErrorTitleText"></h3>
+                    <div class="note" data-bind="css: { shake: resendingFailed }">
+                        <p>
+                            <span class="material-icons incorrect-color">info</span>
+                            <span data-translate-text="[try to submit again key]"></span>
+                        </p>
+                        <p>
+                            <span class="material-icons incorrect-color">info</span>
+                            <span data-translate-text="[contanct with author key]"></span>
+                        </p>
+                        <p>
+                            <span class="material-icons incorrect-color">info</span>
+                            <span data-translate-text="[general-message-key]"></span>
+                            <span class="error-message" data-translate-text="[error-message-key]"></span>
+                        </p>
+                    </div>
+                    <div class="result-buttons">
+                        <button class="button cancel" data-bind="click: skipResending, css: { disabled: isResendingResults }, disable: isResendingResults" data-translate-title="[back]">
+                            <i class="material-icons">keyboard_backspace</i>
+                            <span data-translate-text="[back]"></span>
+                        </button>
+                        <button href="#" class="button submit" data-bind="click: resendResults, disable: isResendingResults, css: { progress: isResendingResults }" data-translate-title="[resend-results-key]">
+                            <!-- ko if: isResendingResults -->
+                            <span class="operation-progress white"></span>
+                            <span>&nbsp;</span>
+                            <!-- /ko -->
+                            <!-- ko ifnot: isResendingResults -->
+                            <span class="button-caption" data-translate-text="[resend-results-key]"></span>
+                            <!-- /ko -->
+                        </button>
+                        <!-- ko if: retriesExceeded -->
+                        <div class="link-container">
+                            <a class="button link" data-bind="click: closeCourseWithoutResultsSending, text: skipSendinResultsText"></a>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <div class="overlay-close-button" data-bind="click: skipResending">
+                <span class="overlay-close-button-icon material-icons">clear</span>
+                <div class="overlay-close-button-title">esc</div>
+            </div>
+        </div>
+    </div>
+</section>

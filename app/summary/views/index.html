@@ -1,10 +1,18 @@
-<section class="summary view" data-bind="css: { 'disabled': isClosing() || isClosed() }">
+<section class="summary view" data-bind="css: { 'disabled': isClosing() || isClosed() }, blockBodyScroll: resultsResendDialog.isVisible()">
     <header class="view-header">
         <div class="course-progress" data-bind="progress: progress">
         </div>
         <div class="header-progress-text" data-bind="text:progress+'%'"></div>
         <h2 data-translate-text="[overall progress]">Overall progress</h2>
-        <button class="button finish close-course" data-bind="click: close, css: { 'disabled': isClosing() || isClosed() }" data-translate-text="[close course]">Close course</button>
+        <button class="button finish close-course" data-bind="click: close, css: { 'disabled': isClosing() || isClosed() }">
+            <!-- ko if: isSendingResults -->
+            <span class="operation-progress white"></span>
+            <span>&nbsp;</span>
+            <!-- /ko -->
+            <!-- ko ifnot: isSendingResults -->
+            <span data-translate-text="[close course]"></span>
+            <!-- /ko -->
+        </button>
     </header>
     <div class="container-content-wrapper">
         <div class="content container">
@@ -36,10 +44,14 @@
     <!-- ko if: isSendingResults -->
     <div class="finish-course-layout">
         <div class="block-overlay"></div>
-        <div class="loader">
-            <span class="text" data-translate-text="[tracking and tracing reporting progress]">Reporting progress...</span>
+        <div class="message-wrapper">
+            <span class="text operation-progress" data-translate-text="[tracking and tracing reporting progress]">Reporting progress...</span>
         </div>
     </div>
     <!-- /ko -->
 
+    <!-- ko if: resultsResendDialog.isVisible -->
+    <!-- ko compose: { view: 'dialogs/resultsResend/resultsResend', model: 'dialogs/resultsResend/resultsResend', compositionComplete: resultsResendDialog.compositionComplete, activationData: { close: resultsResendDialog.hide, callbacks: resultsResendDialog.callbacks, resultsSendErrorTitleKey: resultsResendDialog.resultsSendErrorTitleKey, endpointNameKey: resultsResendDialog.endpointNameKey }} -->
+    <!-- /ko -->
+    <!-- /ko -->
 </section>

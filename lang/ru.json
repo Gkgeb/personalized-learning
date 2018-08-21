@@ -69,11 +69,12 @@
     "[survey mode caption]": "Ответ на этот вопрос не повлияет на Ваш прогресс",
     "[download]": "Скачать",
     "[results send error title]": "Ваш прогресс был сохранен, но webhook НЕ был отправлен автору",
-    "[try to submit again key]": "Пожалуйста попробуйте отправить результаты ещё раз",
-    "[contanct with author key]": "Пожалуйста, сообщите об этом автору, если проблема до сих пор присутствует",
+    "[try to submit again key]": "Пожалуйста, попробуйте отправить результаты ещё раз",
+    "[contanct with author key]": "Пожалуйста, сообщите автору курса, если проблема не решилась",
     "[general-message-key]": "Ошибка:",
     "[error-message-key]": "не удалось подключиться к хосту",
     "[resend-results-key]": "Отправить результаты ещё раз",
-    "[close without reporting results]": "Закончить курс без отправки моих результатов",
-    "[back]": "Назад"
+    "[close without reporting results]": "Закончить курс без отправки {endpointName}",
+    "[back]": "Назад",
+    "[webhooks endpoint name key]": "вебхуки"
 }
