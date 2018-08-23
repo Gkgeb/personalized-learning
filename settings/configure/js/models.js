@@ -29,7 +29,8 @@
         init(webhooksSettings);
 
         function init(webhooksSettings) {
-            if (!webhooksSettings && !webhooksSettings.url) {
+            if (!webhooksSettings || !webhooksSettings && !webhooksSettings.url) {
+                that.url("");
                 return;
             }
 
