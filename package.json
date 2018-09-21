@@ -4,7 +4,8 @@
   "description": "This template is a basic course format",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "resources": "easyresources generate --worksheetName \"Personalized learning\" --outputPath \"lang\" --excludeLocalizations \"ar\""
   },
   "repository": {
     "type": "git",
