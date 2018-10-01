@@ -22,7 +22,7 @@
             </div>
             <!-- ko foreach: texts -->
             <div class="drag-and-drop-text-draggable" data-bind="draggableText: {}, scope: $parent.id">
-                <div data-bind="text: text">
+                <div data-bind="text: text, attr: { title: text }">
                 </div>
             </div>
             <!-- /ko -->
