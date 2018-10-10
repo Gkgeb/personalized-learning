@@ -45,11 +45,9 @@
                 xhrFields: {
                     withCredentials: true
                 }
-            }).always(function (response) {
-                if (response.status === 200) {
-                    return defer.resolve();
-                }
-                
+            }).done(function() {
+                defer.resolve();
+            }).fail(function () {
                 if (attemptNumber >= constants.sendResultAttemptsCount) {
                     return defer.reject(constants.errorMessage);
                 }
