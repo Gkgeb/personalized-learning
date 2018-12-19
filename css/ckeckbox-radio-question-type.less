@@ -1,4 +1,6 @@
-﻿.checkbox, .radio {
+﻿@import "variables.less";
+
+.checkbox, .radio {
     background-color: @checkbox-radio-background-color;
     border: @checkbox-radio-border-width @checkbox-radio-border-color @checkbox-radio-border-style;
     border-radius: 5px;
@@ -11,7 +13,7 @@
 .checkbox:hover, .radio:hover {
     border-color: @checkbox-radio-hover-border-color;
     background: @checkbox-radio-checked-background-color;
-    box-shadow: 0 0 50px 30px #e7f7f0 inset;
+    box-shadow: 0 0 50px 30px #e7f7f0 inset;  
     cursor: pointer;
 }
 

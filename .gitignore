@@ -7,5 +7,6 @@ Web.config
 /.vs/config/applicationhost.config
 *.suo
 *.sln
+*.css
 /media
 .DS_Store

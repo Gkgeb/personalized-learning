@@ -1,4 +1,6 @@
-﻿.styled-content {
+﻿@import "variables.less";
+
+.styled-content {
     .margin-bottom() {
         &:not(:last-child) {
             margin-bottom: 15px;
@@ -10,6 +12,7 @@
     color: @styled-content-font-color;
     font-family: 'robotoSlab-regular','OpenSans';
     font-size: 18px;
+    display: inline-block;
 
     &:first-child{
         margin-top: 30px;
@@ -38,7 +41,6 @@
         font-size: 24px;
         .margin-bottom;
     }
-
     h2 {
         color: @styled-content-font-color;
         font-size: 22px;
