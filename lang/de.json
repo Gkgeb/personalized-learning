@@ -67,5 +67,13 @@
     "[confirn your name and email]": "OK, Name und E-Mail sind korrekt",
     "[login header]": "Sich selbst vorstellen",
     "[survey mode caption]": "Die Antwort wirkt sich nicht auf Ihren Fortschritt aus",
+    "[download]": "Download",
+    "[results send error title]": "Der Fortschritt wurde gespeichert, aber der WebHook wurde NICHT an den Autor gesendet",
+    "[try to submit again key]": "Bitte versuche die Ergebnisse erneut zu übermitteln",
+    "[contanct with author key]": "Wenn das Problem weiterhin besteht, wende dich sich an den Kursautor",
+    "[general-message-key]": "Fehlermeldung:",
+    "[error-message-key]": "Keine Verbindung zum Host",
+    "[resend-results-key]": "Ergebnisse erneut übermitteln",
+    "[close without reporting results]": "Kurs beenden, ohne die Ergebnisse zu übermitteln {endpointName}",
     "[back]": "Zurück"
 }
