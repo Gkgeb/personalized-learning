@@ -25,12 +25,29 @@
         }
 
         function onCourseFinished(resultCallbackUrl, course) {
-            var url = resultCallbackUrl + '?score=' + course.score() / 100;
+            var requestParams = {
+                url: resultCallbackUrl,
+                method: 'POST',
+                dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    score: course.score() / 100
+                }
+            };
 
-            return sendRequest(url);
+            var token = queryStringParameters.get('token');
+            if (token) {
+                requestParams.headers = {
+                    Authorization: 'Bearer ' + token
+                };
+            }
+
+            return sendRequest(requestParams);
         }
 
-        function sendRequest(url, attemptNumber, defer) {
+        function sendRequest(params, attemptNumber, defer) {
             if (typeof defer === 'undefined') {
                 defer = Q.defer();
             }
@@ -39,13 +56,7 @@
                 attemptNumber = 0;
             }
 
-            $.ajax({
-                url: url,
-                dataType: 'jsonp',
-                xhrFields: {
-                    withCredentials: true
-                }
-            }).done(function() {
+            $.ajax(params).done(function() {
                 defer.resolve();
             }).fail(function () {
                 if (attemptNumber >= constants.sendResultAttemptsCount) {
@@ -53,7 +64,7 @@
                 }
 
                 setTimeout(function () {
-                    sendRequest(url, ++attemptNumber, defer);
+                    sendRequest(params, ++attemptNumber, defer);
                 }, constants.sendResultAttemptsTimeout);
             });
 
