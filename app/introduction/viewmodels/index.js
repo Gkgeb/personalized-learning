@@ -9,7 +9,7 @@
     return viewModel;
 
     function activate() {
-        viewModel.content = course.content;
+        viewModel.introduction = course.introduction;
     }
 
     function start() {

@@ -9,7 +9,7 @@
         isFinished: false,
         isSuccessful: isSuccessful,
         getStatus: getStatus,
-
+        introduction: [],
         sections: [],
         title: '',
         id: '',

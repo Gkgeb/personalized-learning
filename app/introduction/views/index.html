@@ -5,10 +5,15 @@
         </div>
     </header>
 
-
-        <div class="content container container-content-wrapper">
-            <div class="styled-content" data-bind="html: content, wrapElements: content "></div>
-        </div>
-
+    <div class="content container container-content-wrapper">
+        <!-- ko foreach: introduction -->
+            <!-- ko ifnot: children.length -->
+                <li data-bind="contentBlock: content, wrapElements: content" class="introduction-item styled-content"></li>
+            <!-- /ko -->
+            <!-- ko if: children.length -->
+                <li class="introduction-item expandable-block-wrapper" data-bind="compose: { model:'viewmodels/expandableBlock', activationData: $data }"></li>
+            <!-- /ko -->
+        <!-- /ko -->
+    </div>
 
 </section>

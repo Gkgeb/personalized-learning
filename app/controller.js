@@ -42,7 +42,7 @@ function (app, activator, ko, loader, templateSettings, course, userContext, xAp
         app.on('studying:completed').then(loadModuleAndActivate).then(viewChanged);
         app.on('studying:stop-reading').then(stoppedReading);
         var progress = progressContext.get();
-        if (course.content) {
+        if (course.introduction) {
             self.lifecycle.unshift('introduction/viewmodels/index');
         }
 
