@@ -10,3 +10,4 @@ Web.config
 *.css
 /media
 .DS_Store
+.idea

@@ -34,11 +34,11 @@
     };
 
     var host = window.location.host;
-    var lrsHost = publishSettings.defaultLRSUrl || 'reports.easygenerator.com';
+    var lrsHost = publishSettings.defaultLRSUrl || 'https://reports.easygenerator.com';
 
     var defaultXapi = {
         lrs: {
-            uri: '//' + lrsHost + '/xApi/statements',
+            uri: lrsHost + '/xApi/statements',
             authenticationRequired: false,
             credentials: {
                 username: '',
