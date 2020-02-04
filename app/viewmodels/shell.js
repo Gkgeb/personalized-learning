@@ -1,4 +1,7 @@
-﻿define(['knockout', 'durandal/app', 'controller', 'loader', 'templateSettings', 'background', 'entities/course', 'modulesInitializer', 'progressContext', 'windowOperations'], function (ko, app, controller, loader, templateSettings, background, course, modulesInitializer, progressContext, windowOperations) {
+﻿define(['knockout', 'durandal/app', 'controller', 'loader', 'templateSettings', 'background', 
+'entities/course', 'modulesInitializer', 'progressContext', 'windowOperations', 'eventManager'],
+ function (ko, app, controller, loader, templateSettings, background, 
+    course, modulesInitializer, progressContext, windowOperations, eventManager) {
     "use strict";
 
     var viewModel = {
@@ -61,7 +64,9 @@
         viewModel.isFinishPopupVisible(false);
     }
     function close() {
-        windowOperations.close(function() { viewModel.isClosed(true); });
+        return eventManager.courseFinalized().then(function () {
+            windowOperations.close(function() { viewModel.isClosed(true); });
+        });
     }
     function finish() {
         controller.finish();
