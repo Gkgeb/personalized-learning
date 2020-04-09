@@ -147,15 +147,14 @@
               return undefined;
           }
 
-          if (dq.hasCorrectFeedback) {
-            question.correctFeedback =
-              "content/" + dobj.id + "/" + dq.id + "/correctFeedback.html";
-          }
 
-          if (dq.hasIncorrectFeedback) {
-            question.incorrectFeedback =
-              "content/" + dobj.id + "/" + dq.id + "/incorrectFeedback.html";
-          }
+          question.correctFeedback = _.map(dq.questionCorrectFeedbacks, function(item) {
+            return mapContentBlock(item, dobj.id, dq.id);
+          })
+
+          question.incorrectFeedback = _.map(dq.questionIncorrectFeedbacks, function(item) {
+            return mapContentBlock(item, dobj.id, dq.id);
+          })
 
           question.learningContents = _.map(dq.learningContents, function(
             item

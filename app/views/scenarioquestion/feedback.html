@@ -5,7 +5,18 @@
 			<div class="question-feedback-text incorrect" data-translate-text="[scenario has not been passed successfully]">Scenario has NOT been passed successfully</div>
 		</div>
 		<!-- ko if: incorrectFeedback -->
-		<div class="question-feedback-description styled-content" data-bind="html: incorrectFeedback, wrapElements: content"></div>
+		<div class="question-content">
+			<div>
+				<!-- ko foreach: incorrectFeedback -->
+				<!-- ko ifnot: children.length -->
+				<div class="styled-content" data-bind="contentBlock: content"></div>
+				<!-- /ko -->
+				<!-- ko if: children.length -->
+				<div class="expandable-block-wrapper" data-bind="compose: { model:'viewmodels/expandableBlock', activationData: $data }"></div>
+				<!-- /ko -->
+				<!-- /ko -->
+			</div>
+		</div>
 		<!-- /ko -->
 		<!-- ko if: $parent.nextOrNotCompletedReading -->
 		<div class="question-feedback-action-container incorrect">
@@ -43,7 +54,18 @@
 			<div class="question-feedback-text correct" data-translate-text="[scenario has been passed successfully]">Scenario has been passed successfully</div>
 		</div>
 		<!-- ko if: correctFeedback -->
-		<div class="question-feedback-description styled-content" data-bind="html: correctFeedback, wrapElements: content"></div>
+		<div class="question-content">
+			<div>
+				<!-- ko foreach: correctFeedback -->
+				<!-- ko ifnot: children.length -->
+				<div class="styled-content" data-bind="contentBlock: content"></div>
+				<!-- /ko -->
+				<!-- ko if: children.length -->
+				<div class="expandable-block-wrapper" data-bind="compose: { model:'viewmodels/expandableBlock', activationData: $data }"></div>
+				<!-- /ko -->
+				<!-- /ko -->
+			</div>
+		</div>
 		<!-- /ko -->
 		<div class="question-feedback-action-container correct">
 			<!-- ko if: $parent.nextOrNotCompletedReading -->

@@ -28,38 +28,16 @@
             });
         }
 
-        this.correctFeedback = ko.observable();
+        this.correctFeedback = ko.observableArray([]);
         this.correctFeedback.load = function () {
-            var that = this;
-
-            return Q.fcall(function() {
-                if (!question.correctFeedback) {
-                    return null;
-                }
-
-                return http.get(question.correctFeedback, { dataType: 'html' }).then(function (feedback) {
-                    that(feedback);
-                });
-            });
-
+            return loadContentBlocks.apply(this, [question.correctFeedback]);
         }
 
         this.incorrectFeedback = ko.observable();
         this.incorrectFeedback.load = function () {
-            var that = this;
-
-            return Q.fcall(function () {
-                if (!question.incorrectFeedback) {
-                    return null;
-                }
-
-                return http.get(question.incorrectFeedback, { dataType: 'html' }).then(function (feedback) {
-                    that(feedback);
-                });
-            });
+            return loadContentBlocks.apply(this, [question.incorrectFeedback]);
         }
     }
-
     function loadContent(items) {
         var promises = [];
 
